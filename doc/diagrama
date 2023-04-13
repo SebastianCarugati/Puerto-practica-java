@@ -1,0 +1,103 @@
+@startuml
+
+Title Diagrama puerto
+
+class Puerto {
+CANTIDAD_AMARRES = 10
+amarre: List<amarre>
+alquiler: List <alquiler>
+
+usarAmarre()
+liberarAmarre()
+
+}
+
+class Embarcacion {
+tipo: String
+matricula: Integer
+eslora: Integer
+anio_fab: Integer
+precio_alquiler: Integer
+
+}
+
+class Amarre {
+ identificador: Integer [1..10]
+ ocupado: boolean [true | false]
+ embarcacion: Embarcacion
+ 
+ mostrarEmbarcacion();
+ 
+}
+
+class Alquiler {
+ cliente: Cliente
+ dia_inicial: Integer[1..30]
+ dia_final: Integer[1..30]
+ amarre: Amarre
+ embarcacion: Embarcacion
+}
+
+
+class Cliente {
+ nombre: String
+ apellido: String
+ dni: Integer
+}
+
+class Velero {
+   getPrecio() --> 100
+}
+
+class Yate {
+  getPrecio() -->200
+}
+
+class Catamaran {
+  getPrecio() -->150
+}
+
+class Lancha {
+ getPrecio() -->50
+}
+
+class Anfibio {
+ getPrecio() -->175
+ getRuedas()--> 4
+ getVelocidad() --> 200
+}
+
+interface Anfibioneta{
+ getRuedas()
+ getVelocidad()
+}
+
+
+class Motos_Acuaticas {
+getPrecio() -->25
+}
+
+
+
+Puerto -- Amarre
+Puerto -- Alquiler
+Amarre -- Embarcacion
+Alquiler -- Cliente
+Alquiler -- Embarcacion
+Embarcacion <|-- Velero
+Embarcacion <|-- Yate
+Embarcacion <|-- Catamaran
+Embarcacion <|-- Lancha
+Embarcacion <|-- Anfibio
+Embarcacion <|-- Motos_Acuaticas
+
+Anfibioneta <|.. Anfibio
+
+
+
+
+
+
+
+
+@enduml
